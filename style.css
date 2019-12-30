@@ -1,6 +1,3 @@
-
-
-
 /*
 Theme Name:     Avada Child Theme
 Theme URI:      https://wordpress.org/themes/Avada/
@@ -10,3 +7,10 @@ Author URI:     WordPress.org
 Template:       Avada
 Version:        1.0.0
 */
+
+article.activity div.fusion-flexslider {
+    float: left;
+    padding-right: 15px;
+}
+
+
