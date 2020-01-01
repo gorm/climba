@@ -1,5 +1,5 @@
-<?php
 
+<?php
 // Adding session goal
 $terms = get_field('session_phase');
 if( $terms ): ?>
@@ -20,6 +20,7 @@ if( $terms ): ?>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
+
 
 <?php
 /*
@@ -57,7 +58,7 @@ if( $terms ): ?>
 <?php endif; ?>
 
 <?php 
-// Adding difficulty
+// Adding tags
 $terms = get_field('tags');
 if( $terms ): ?>
     <ul>
