@@ -107,8 +107,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php endif; ?>
 				<?php endif; ?>
 			<?php endif; ?>
-
-                        <?php get_template_part( 'templates/blog', 'meta-activity' ); ?>
                         
 			<?php if ( 'below' === Avada()->settings->get( 'blog_post_title' ) ) : ?>
 				<?php if ( 'below_title' === Avada()->settings->get( 'blog_post_meta_position' ) ) : ?>
@@ -122,6 +120,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php endif; ?>
 			<?php endif; ?>
 			<div class="post-content">
+                            <?php
+                            // Render activity meta
+                            get_template_part( 'templates/blog', 'meta-activity' ); ?>
+                            
 			    <?php the_content(); ?>
 			    <?php fusion_link_pages(); ?>
 			</div>

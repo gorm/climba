@@ -67,3 +67,6 @@ if( $terms ): ?>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
+
+<?php echo kk_star_ratings(); ?>
+

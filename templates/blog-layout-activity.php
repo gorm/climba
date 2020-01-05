@@ -304,45 +304,43 @@ if ( $content_align && ( 'grid' === $blog_layout || 'masonry' === $blog_layout |
 				<?php endif; ?>
 
 				<div class="fusion-post-content post-content">
-					<?php echo avada_render_post_title( $post->ID ); // WPCS: XSS ok. ?>
+				    <?php echo avada_render_post_title( $post->ID ); // WPCS: XSS ok. ?>
 
-<?php get_template_part( 'templates/blog', 'meta-activity' ); ?>    
+                                    <?php
+                                    // Render meta activity information
+                                    get_template_part( 'templates/blog', 'meta-activity' ); ?>    
 
+                                    <?php // Render post meta for grid and timeline layouts. ?>
+				    <?php if ( 'grid' === $blog_layout || 'masonry' === $blog_layout || 'timeline' === $blog_layout ) : ?>
+					<?php echo fusion_render_post_metadata( 'grid_timeline' ); // WPCS: XSS ok. ?>
+					<?php // See 7199. ?>
+					<?php if ( 'masonry' !== $blog_layout && ( $is_there_meta_above && ( $is_there_content || $is_there_meta_below ) || ( ! $is_there_meta_above && $is_there_meta_below ) ) ) : ?>
+					    <?php
+					    $separator_styles_array = explode( '|', Avada()->settings->get( 'grid_separator_style_type' ) );
+					    $separator_styles       = '';
 
-
-
-<?php // Render post meta for grid and timeline layouts. ?>
-					<?php if ( 'grid' === $blog_layout || 'masonry' === $blog_layout || 'timeline' === $blog_layout ) : ?>
-						<?php echo fusion_render_post_metadata( 'grid_timeline' ); // WPCS: XSS ok. ?>
-
-						<?php // See 7199. ?>
-						<?php if ( 'masonry' !== $blog_layout && ( $is_there_meta_above && ( $is_there_content || $is_there_meta_below ) || ( ! $is_there_meta_above && $is_there_meta_below ) ) ) : ?>
-							<?php
-							$separator_styles_array = explode( '|', Avada()->settings->get( 'grid_separator_style_type' ) );
-							$separator_styles       = '';
-
-							foreach ( $separator_styles_array as $separator_style ) {
-								$separator_styles .= ' sep-' . $separator_style;
-							}
-							?>
-							<div class="fusion-content-sep<?php echo esc_attr( $separator_styles ); ?>"></div>
-						<?php endif; ?>
-
-					<?php elseif ( 'large-alternate' === $blog_layout || 'medium-alternate' === $blog_layout ) : ?>
-						<?php // Render post meta for alternate layouts. ?>
-						<?php echo fusion_render_post_metadata( 'alternate' ); // WPCS: XSS ok. ?>
+					    foreach ( $separator_styles_array as $separator_style ) {
+						$separator_styles .= ' sep-' . $separator_style;
+					    }
+					    ?>
+					    <div class="fusion-content-sep<?php echo esc_attr( $separator_styles ); ?>"></div>
 					<?php endif; ?>
 
-					<div class="fusion-post-content-container">
-						<?php
-						/**
-						 * The avada_blog_post_content hook.
-						 *
-						 * @hooked avada_render_blog_post_content - 10 (outputs the post content wrapped with a container).
-						 */
-						do_action( 'avada_blog_post_content' );
-						?>
-					</div>
+				    <?php elseif ( 'large-alternate' === $blog_layout || 'medium-alternate' === $blog_layout ) : ?>
+					<?php // Render post meta for alternate layouts. ?>
+					<?php echo fusion_render_post_metadata( 'alternate' ); // WPCS: XSS ok. ?>
+				    <?php endif; ?>
+
+				    <div class="fusion-post-content-container">
+					<?php
+					/**
+					 * The avada_blog_post_content hook.
+					 *
+					 * @hooked avada_render_blog_post_content - 10 (outputs the post content wrapped with a container).
+					 */
+					do_action( 'avada_blog_post_content' );
+					?>
+				    </div>
 				</div>
 
 				<?php if ( 'medium' === $blog_layout || 'medium-alternate' === $blog_layout ) : ?>
