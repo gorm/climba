@@ -11,6 +11,17 @@ if( $terms ): ?>
 <?php endif; ?>
 
 <?php
+// Adding phase
+$terms = get_field('phase');
+if( $terms ): ?>
+    <ul>
+        <?php foreach( $terms as $term ): ?>
+    	    <h2><?php echo $term->name; ?></h2>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+<?php
 // Adding stage
 $terms = get_field('stage');
 if( $terms ): ?>
@@ -20,6 +31,7 @@ if( $terms ): ?>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
+
 
 
 <?php
@@ -45,6 +57,18 @@ if( $term ): ?>
     <h2><?php echo $term->name; ?></h2>
     <h2><?php echo $term->description; ?></h2>    
 <?php endif; ?>
+
+<?php 
+// Adding age
+$terms = get_field('age');
+if( $terms ): ?>
+    <ul>
+        <?php foreach( $terms as $term ): ?>
+    	    <h2><?php echo $term->name; ?></h2>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
 
 <?php 
 // Adding difficulty

@@ -13,4 +13,6 @@ article.activity div.fusion-flexslider {
     padding-right: 15px;
 }
 
-
+.single-activity img, .post-type-archive-activity img {
+    max-width: 610px!important;
+}

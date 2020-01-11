@@ -19,11 +19,14 @@ if ( get_stylesheet() !== get_template() ) {
 
 // array of filters (field key => field name)
 $GLOBALS['my_query_filters'] = array( 
-    'climbing_competence'	=> 'cc'
+    'climbing_competencies' => 'cc',
+    'personal_competencies' => 'pc',
 );
 
-// action
-add_action('pre_get_posts', 'my_pre_get_posts', 10, 1);
+$GLOBALS['my_query_headers'] = array(
+    'climbing_competencies' => 'My goal is to train',
+    'personal_competencies' => 'My goal is to increase',
+);
 
 function my_pre_get_posts( $query ) {
     // bail early if is in admin
@@ -36,8 +39,8 @@ function my_pre_get_posts( $query ) {
     // get meta query
     $meta_query = $query->get('meta_query');
     if ( $meta_query == '' ) {
-        //$meta_query = array('realtion' => 'AND');
-        $meta_query = array();        
+        $meta_query = array('relation' => 'AND');
+        //$meta_query = array();        
     }
     
     // loop over filters
@@ -50,7 +53,6 @@ function my_pre_get_posts( $query ) {
 	// get the value for this filter
 	// eg: http://www.website.com/events?city=melbourne,sydney
 	$values = explode(',', $_GET[ $name ]);
-
         foreach ( $values as $key2 => $value2) {
             // append meta query
     	    $meta_query[] = array(
@@ -60,12 +62,16 @@ function my_pre_get_posts( $query ) {
             );
         }
     } 
-    
+    //print_r($meta_query);
     // update meta query
     $query->set('meta_query', $meta_query);
 
     return;
 }
+
+// action
+add_action('pre_get_posts', 'my_pre_get_posts', 10, 1);
+
 
 /* function get_acf_field_keys( $custom_field_slug = '' ) {
  * 

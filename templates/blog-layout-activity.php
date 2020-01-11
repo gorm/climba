@@ -308,7 +308,8 @@ if ( $content_align && ( 'grid' === $blog_layout || 'masonry' === $blog_layout |
 
                                     <?php
                                     // Render meta activity information
-                                    get_template_part( 'templates/blog', 'meta-activity' ); ?>    
+                                    get_template_part( 'templates/blog', 'meta-activity' );
+                                    ?>    
 
                                     <?php // Render post meta for grid and timeline layouts. ?>
 				    <?php if ( 'grid' === $blog_layout || 'masonry' === $blog_layout || 'timeline' === $blog_layout ) : ?>

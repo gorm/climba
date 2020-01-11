@@ -136,19 +136,57 @@ if ( ! defined( 'ABSPATH' ) ) {
                             if ( $description ) {
                                 echo "<h2>Description</h2>";
                                 echo $description;
-                            }
+                            }                            
                             ?>
                         </div>
 
                         <div class="post-meta-variations">
                             <?php
-                            $variations = get_field('variations2');
+                            $variations = get_field('variations');
                             if ( $variations ) {
                                 echo "<h2>Variations</h2>";
                                 echo $variations;
                             }
                             ?>
                         </div>                        
+
+                        <div class="post-meta-going_deeper">
+                            <?php
+                            $going_deeper = get_field('going_deeper');
+                            if ( $going_deeper ) {
+                                echo "<h2>Going deeper</h2>";
+                                echo $going_deeper;
+                            }
+                            ?>
+                        </div>                        
+
+                        <?php
+                        $supplies = get_field('supplies');
+                        $safety_note = get_field('safety_Note');
+                        $extra_css = '';
+                        
+                        if ( $supplies && $safety_note) {
+                            $extra_css = 'col-xs-6';
+                        }
+                        ?>
+                        <div class="post-meta-supplies <?php echo $extra_css; ?>">
+                            <?php
+                            if ( $supplies ) {
+                                echo "<h2>Supplies</h2>";
+                                echo $supplies;
+                            }
+                            ?>
+                        </div>                        
+
+                        <div class="post-meta-safety_note <?php echo $extra_css; ?>">
+                            <?php
+                            if ( $safety_note ) {
+                                echo "<h2>Safety Note</h2>";
+                                echo $safety_note;
+                            }
+                            ?>
+                        </div>                        
+                        
                         
 			<?php if ( ! post_password_required( $post->ID ) ) : ?>
 				<?php if ( '' === Avada()->settings->get( 'blog_post_meta_position' ) || 'below_article' === Avada()->settings->get( 'blog_post_meta_position' ) || 'disabled' === Avada()->settings->get( 'blog_post_title' ) ) : ?>

@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <?php foreach( $GLOBALS['my_query_filters'] as $key => $name ): 
 
         // get the field's settings without attempting to load a value
-        $field = get_field_object("climbing_competence", 25, false);
+        $field = get_field_object($key, 25, false);
 
         // set value if available
         if( isset($_GET[ $name ]) ) {
@@ -49,6 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         // create filter
         ?>
             <div class="filter" data-filter="<?php echo $name; ?>">
+                <h2><?php echo $GLOBALS['my_query_headers'][$key]; ?></h2>
 	        <?php acf_render_field( $field ); ?>
             </div>
             
@@ -105,7 +106,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php
 get_footer();
 
-
-
 /* Omit closing PHP tag to avoid "Headers already sent" issues. */
-//echo $wp_query->request;
+#echo $wp_query->request;
